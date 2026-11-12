@@ -12,13 +12,13 @@ The second line uses the git package (which we have installed onto our system us
 We check the packages that the repo needs, check every current configuration that we have and check what configurations are featured in the repo:
 
 ```bash
--- displays the contents of file
+# displays the contents of file
 cat ~/dotfiles/packages.txt
 
--- ls - lists files and directories, -l - detailed listing (permissions, ownership, sizes, dates), -a - include hidden files and directories
+# ls - lists files and directories, -l - detailed listing (permissions, ownership, sizes, dates), -a - include hidden files and directories
 ls -la ~/.config
 
--- find - search through directories, -maxdepth 2 - search no more than 2 directories deep, -type d - show directories only
+# find - search through directories, -maxdepth 2 - search no more than 2 directories deep, -type d - show directories only
 find ~/dotfiles/.config -maxdepth 2 -type d
 ```
 One thing to note is that I'm using waybar whilst 43PR uses Quickshell.
@@ -26,7 +26,7 @@ One thing to note is that I'm using waybar whilst 43PR uses Quickshell.
 Next we back up our current minimal, rudimentary config using a copy-paste command:
 
 ```bash
--- cp - copy (and paste) command, -a - 'archive' mode; preserves permissions, ownerships, timestamps, symbolic links and directory structure
+# cp - copy (and paste) command, -a - 'archive' mode; preserves permissions, ownerships, timestamps, symbolic links and directory structure
 cp -a ~/.config ~/.config-before-43pr
 ```
 
