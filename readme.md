@@ -1,4 +1,5 @@
-# Manual Installation
+# Manual Installation of 43PR Hyperland Setup
+We started with a relatively fresh installation of archlinux with a basic configuration of hyprland and waybar (https://www.youtube.com/watch?v=TS1ghG3c3xI, https://www.youtube.com/watch?v=PEgDssV0nW0&t=1898s&pp=0gcJCUkMAYcqIYzv by Josean Martinez).
 First we copy the githup repo onto our home directory: https://github.com/43PR/dotfiles.
 
 ```bash
