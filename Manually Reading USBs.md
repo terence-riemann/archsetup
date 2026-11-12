@@ -8,7 +8,7 @@ If it's not made already, make a usb directory in your mount directory (as we wi
 ```bash
 sudo mkdir -p /mnt/usb
 ```
-Now mount the usb (using the partition identifier name) onto the directory (in my case, my usb (really the usb's partition name) is named sdb1):
+Now mount the usb (using the partition identifier name) onto the directory (in my case, my usb (really the usb's partition name) is named sdb1) and grant necessary permissions to write onto the usb for the user:
 ```bash
 # -o - options, gid = users - the group ownership of files on the mounted filesystem, fmask=113,dmask=002 - setting specific permissions to the group, /dev/sdb1 - usb partition id, /mnt/usb - directory being mounted onto.
 mount -o gid=users,fmask=113,dmask=002 /dev/sdb1 /mnt/usb
