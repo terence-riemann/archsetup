@@ -21,7 +21,15 @@ ls -la ~/.config
 -- find - search through directories, -maxdepth 2 - search no more than 2 directories deep, -type d - show directories only
 find ~/dotfiles/.config -maxdepth 2 -type d
 ```
-Next we back up 
+One thing to note is that I'm using waybar whilst 43PR uses Quickshell.
+
+Next we back up our current minimal, rudimentary config using a copy-paste command:
+
+```bash
+-- cp - copy (and paste) command, -a - 'archive' mode; preserves permissions, ownerships, timestamps, symbolic links and directory structure
+cp -a ~/.config ~/.config-before-43pr
+```
+
 asd
 sad
 asd
