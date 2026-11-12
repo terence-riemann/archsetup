@@ -7,7 +7,7 @@ First we copy the githup repo onto our home directory: https://github.com/43PR/d
 cd ~
 git clone https://github.com/43PR/dotfiles.git
 ```
-The second line uses the git package (which we have installed onto our system using pacman) to copy the whole repo into a new directory within the home directory which is named the same as the repo (in this case home/GeneTakavich/dotfiles).
+The second line uses the git package (which we have installed onto our system using pacman) to copy the whole repo into a new directory within the home directory which is named the same as the repo (in my case home/GeneTakavich/dotfiles).
 
 We check the packages that the repo needs, check every current configuration that we have and check what configurations are featured in the repo:
 
