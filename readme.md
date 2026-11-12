@@ -29,6 +29,23 @@ Next we back up our current minimal, rudimentary config using a copy-paste comma
 # cp - copy (and paste) command, -a - 'archive' mode; preserves permissions, ownerships, timestamps, symbolic links and directory structure
 cp -a ~/.config ~/.config-before-43pr
 ```
+Now we want to check which packages for 43PR aren't currently installed:
+```bash
+# while read -r pkg; do - reads one line at a time and stores it in variable 'pkg', pkg="${pkg%%#*}" - removes everything from the first '#' onwards in a line, pkg="${pkg//[[:space:]]/}" - removes whitespace, -z "$pkg" - checks empty line, && continue - skips line in such case, pacman -Q "$pkg" >/dev/null 2>&1 - checks if pkg is installed and suppresses outputs and error, || echo "$pkg" - if pacman -Q "$pkg" fails (error), print pkg, done < ~/dotfiles/packages.txt - reads the package list for the lines
+while read -r pkg; do
+    pkg="${pkg%%#*}"
+    pkg="${pkg//[[:space:]]/}"
+    [[ -z "$pkg" ]] && continue
+    pacman -Q "$pkg" >/dev/null 2>&1 || echo "$pkg"
+done < ~/dotfiles/packages.txt | sort -u
+```
+Now that we know what packages we are missing, we install all of them.
+
+I setup bluetooth since we have installed bluez (Bluetooth service and drivers), bluez-utils (Provides bluetoothctl, the command-line Bluetooth manager) and blueman (GUI Bluetooth manager). To enable the bluetooth service after installing such packages, we write this line:
+```bash
+sudo systemctl enable --now bluetooth.service
+```
+
 
 asd
 sad
