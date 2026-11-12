@@ -10,7 +10,7 @@ sudo mkdir -p /mnt/usb
 ```
 Now mount the usb (using the partition identifier name) onto the directory (in my case, my usb (really the usb's partition name) is named sdb1):
 ```bash
--- -o - options, gid = users - the group ownership of files on the mounted filesystem, fmask=113,dmask=002 - setting specific permissions to the group, /dev/sdb1 - usb partition id, /mnt/usb - directory being mounted onto.
+# -o - options, gid = users - the group ownership of files on the mounted filesystem, fmask=113,dmask=002 - setting specific permissions to the group, /dev/sdb1 - usb partition id, /mnt/usb - directory being mounted onto.
 mount -o gid=users,fmask=113,dmask=002 /dev/sdb1 /mnt/usb
 ```
 You can access the contents of the usb in the directory /mnt/usb now. You can check its contents by:
