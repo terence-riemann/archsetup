@@ -164,6 +164,56 @@ if [[ "$BACKED_UP_COUNT" -gt 0 ]]; then
     echo "Backups saved to: $BACKUP_DIR"
 fi
 ```
+Now we just copy a default wallpaper from the repo into a wallpaper directory:
+```bash
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+
+mkdir -p "$HOME/Pictures" "$WALLPAPER_DIR"
+
+if [[ -f "$REPO_DIR/wallhaven-k8jvm7.jpg" && ! -e "$WALLPAPER_DIR/wallhaven-k8jvm7.jpg" ]]; then
+    cp "$REPO_DIR/wallhaven-k8jvm7.jpg" "$WALLPAPER_DIR/"
+fi
+```
+We then enable pipewire:
+```bash
+systemctl --user enable --now pipewire.service
+systemctl --user enable --now pipewire-pulse.service
+systemctl --user enable --now wireplumber.service
+```
+Now we turn the scripts in the 
+
+
+Things to run after reboot due to sudo giving me pain:
+```bash
+papirus-folders -C white
+
+if pacman -Qi power-profiles-daemon >/dev/null 2>&1; then
+    sudo systemctl enable --now power-profiles-daemon.service
+fi
+
+find "$SRC" -type f \( -name "*.sh" -o -name "*.py" \) -exec chmod +x {} \;
+
+ls -l ~/.config/43pr/bin/theme.py
+
+python3 ~/.config/43pr/bin/theme.py wallpaper \
+    "$HOME/Pictures/Wallpapers/wallhaven-k8jvm7.jpg"
+
+python3 ~/.config/43pr/bin/theme.py apply
+```
+These do checks:
+```bash
+find ~/.config -xtype l -print
+
+ls -la ~/.config/hypr/
+
+ls -l ~/.config/kitty/matugen.conf
+ls -l ~/.config/hypr/hyprlock-colors.conf
+ls -l ~/.config/rofi/colors.rasi
+ls -l ~/.config/quickshell/Theme.qml
+
+cat ~/.local/state/43pr/state.json
+```
+
 
 asd
 sad
