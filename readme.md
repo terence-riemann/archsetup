@@ -213,7 +213,18 @@ ls -l ~/.config/quickshell/Theme.qml
 
 cat ~/.local/state/43pr/state.json
 ```
+To change to zsh as the default shell, we need to list it under /etc/shells to be able make the change for default shell to zsh:
+```bash
+which zsh
 
+sudo nvim /etc/shells
+
+# Add /usr/sbin/zsh or whatever which zsh outputed to the list
+
+chsh -s /usr/sbin/zsh
+
+echo $SHELL
+```
 
 asd
 sad
