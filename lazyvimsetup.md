@@ -7,11 +7,11 @@ For our VimTeX setup, we want to use Zathura as our pdf reader. Zathura needs a 
 sudo pacman -S zathura zathura-pdf-mupdf
 ```
 Then afterwards, we follow the installation instructions. The init.lua file should have:
-```
+```lua
 require("config.lazy")
 ```
 We make a lua/config directory inside the nvim directory and add a lazy.lua file:
-```
+```lua
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -49,7 +49,7 @@ require("lazy").setup({
 })
 ```
 Any extra plugins (like VimTeX) will be put in a .lua file in lua/plugins. For VimTeX (https://github.com/lervag/vimtex), we add a plugin spec like this from the github:
-```
+```lua
 {
   "lervag/vimtex",
   lazy = false,     -- we don't want to lazy load VimTeX
@@ -81,7 +81,7 @@ sudo pacman -S texlive texlive-latexextra
 The latex compiler latexmk is inside texlive-binextra which is installed via texlive-latexextra.
 
 Now we edit the vimtex.lua file with more specific configurations:
-```
+```lua
 return {
   "lervag/vimtex",
   lazy = false,
