@@ -218,9 +218,3 @@ ls -l ~/.config/quickshell/Theme.qml
 cat ~/.local/state/43pr/state.json # displays the content of the repo theme file in the terminal
 ```
 
-
-asd
-sad
-asd
-asd
-asd
