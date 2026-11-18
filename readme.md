@@ -217,4 +217,13 @@ ls -l ~/.config/quickshell/Theme.qml
 
 cat ~/.local/state/43pr/state.json # displays the content of the repo theme file in the terminal
 ```
+After changing to zsh, I got an error using cd. It successfully changed directory but gave:
+```bash
+-- chpwd_recent_filehandler:29: no such file or directory: /home/GeneTakavich/.local/share/zsh/chpwd-recent-dirs
+```
+Essentially, zsh wants to keep track of recently visited directories but has no such directory or file to do so. So we make the necessary file and directory to rid of this error:
+```bash
+mkdir -p ~/.local/share/zsh
+touch ~/.local/share/zsh/chpwd-recent-dirs # touch - creates an empty file if it doesn't already exist named chpwd-recent-dirs as zsh is trying to access this as per the error
 
+```
