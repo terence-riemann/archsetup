@@ -61,7 +61,7 @@ Any extra plugins (like VimTeX) will be put in a .lua file in lua/plugins. For V
 }
 ```
 This gives errors as there needs to be a return before the array:
-```
+```lua
 return {
   "lervag/vimtex",
   lazy = false,     -- we don't want to lazy load VimTeX
@@ -95,18 +95,30 @@ return {
 
     -- Set compiler options
     vim.g.vimtex_compiler_latexmk = {
-      build_dir = "",
-      callback = 1,
-      continuous = 1,
-      executable = "latexmk",
       options = {
-        "-verbose",
-        "-file-line-error",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-shell-escape",
+        "-verbose", -- Displays more detailed compilation information.
+        "-file-line-error", -- Reports errors with filenames and line numbers.
+        "-synctex=1", -- Enables synchronization between your .tex source and PDF.
+        "-interaction=nonstopmode", -- Prevents LaTeX from stopping for interactive error prompts.
+        "-shell-escape", -- Allows LaTeX to execute external commands.
       },
     }
   end,
 }
+```
+Now we do some useful config of Zathura:
+```bash
+mkdir -p ~/.config/zathura
+nvim ~/.config/zathura/zathurarc
+```
+We add the following configuration:
+```
+set selection-clipboard clipboard -- Uses the system clipboard when copying for example. 
+set statusbar-h-padding 10 -- Horizontal spacing inside the status bar.
+set statusbar-v-padding 5 -- Vertical spacing inside the status bar. 
+set page-padding 2 -- Spacing between pages when viewing multiple pages.
+set adjust-open width -- Adjusts the page to fit the available window width.
+set smooth-scroll true -- Smooth scrolling instead of abrupt scrolling between pages.
+set scroll-step 50 -- Speed of scroll.
+set statusbar-basename true -- Displays just the PDF filename in the status bar rather than its full path.
 ```
