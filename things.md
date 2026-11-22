@@ -1,3 +1,4 @@
+Manually Reading USBs
 To read USBs on Arch, there are many applications that help do this. When your archlinux install is barebones, there is a way to do it manually:
 
 First, find the usb (and its partition(s)) using lsblk:
