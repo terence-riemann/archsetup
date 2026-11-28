@@ -40,5 +40,30 @@ swapon --show
 # Open
 sudo nvim /etc/fstab
 # Add in nvim : /swapfile none swap defaults 0 0
-
+# For chatGPT
+findmnt -no UUID -T /swapfile
+sudo filefrag -v /swapfile
+grep '^HOOKS=' /etc/mkinitcpio.conf
+grep '^GRUB_CMDLINE_LINUX_DEFAULT=' /etc/default/grub
+stat -f -c 'Filesystem block size: %S' /
+getconf PAGESIZE
+swapon --show
+# Configure GRUB
+sudo nvim /etc/default/grub
+# Edit in nvim: Change GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet" to GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet resume=UUID=ae66e9e8-5f73-4d1e-a2ce-8ac1e09133a8 resume_offset=14551040"
+# Regenerate GRUB
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+# 'Regenerate the initramfs for completeness'
+sudo mkinitcpio -P
+# Reboot and reverify
+sudo reboot
+cat /proc/cmdline
+# You should see both resume= and resume_offset=
+cat /sys/power/resume
+cat /sys/power/resume_offset
+# Should see the physical_offset of extent 0 from sudo filefrag -v /swapfile
+# Test hibernation
+systemctl hibernate
+# If it fails check:
+journalctl -b -u systemd-hibernate.service
 ```
