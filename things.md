@@ -22,3 +22,23 @@ When you are done, you need to unmount the drive before removing the usb:
 ```bash
 sudo umount /mnt/usb
 ```
+# Configuring hibernation
+When putting the laptop to sleep, the session is frozen on your ram and the laptop goes into a low power mode. For hibernation, the session stored on your ram is saved onto your disk and the laptop is completely powered off. In order to be able to hibernate the laptop, there must be somewhere on the disk that can accommodate for the hibernation image. This is usually the swap partition, but ours is 4gb. It is too much to manually change the partitions to make the swap partition bigger so instead we will create a 'swap' file on the root partition that will store our hibernation image. Since our ram is 32gb, typically you would want a 32gb swap file on root, but since we will likely never have such high ram usage, I will opt for a 24gb swap file on root. My root partition as is, is 60gb with 15gb currently being used:
+```bash
+df -h /
+```
+Even though my /home directory is sufficiently large to host a 32gb swap file, the /home directory would need access to things deep into the system which we can grant but would cause a security risk if compromised. 
+```bash
+# create it
+sudo fallocate -l 24G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+#verify it
+swapon --show
+# Make the file persistent
+# Open
+sudo nvim /etc/fstab
+# Add in nvim : /swapfile none swap defaults 0 0
+
+```
